@@ -1,16 +1,95 @@
-<!DOCTYPE html>
-<html lang="sv">
+<!doctype html>
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/svg+xml" href="/fav.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&family=Yomogi&display=swap"
+        rel="stylesheet">
     <title>Grumpy Tofu - Admin</title>
 </head>
-<body>
-    <div id="admin-container">
-        <h1>Grumpy Tofu Admin-panel</h1>
-    </div>
 
+<body>
+    <div id="admin-container" class="admin-box">
+
+        <section id="login-section" class="admin-box">
+            <header class="site-header">
+                <h1>Grumpy Tofu Admin-panel</h1>
+                <p class="tagline">Personalinloggning</p>
+            </header>
+            <div class="handdrawn-divider"></div>
+
+            <form id="login-form" class="admin-form">
+                <div class="form-group">
+                    <label for="username">Användarnamn</label>
+                    <input type="text" id="username" required autocomplete="username">
+                </div>
+                <div class="form-group">
+                    <label for="password">Lösenord</label>
+                    <input type="password" id="password" required autocomplete="current-password">
+                </div>
+                <button type="submit" class="admin-btn">Logga in</button>
+                <p id="login-error" class="error-message" style="display: none;"></p>
+            </form>
+        </section>
+
+        <section id="dashboard-section" style="display: none;">
+            <header class="admin-header">
+                <div>
+                    <h1>Grumpy Tofu Dashboard</h1>
+                    <p class="tagline">Inloggad som: <span id="logged-in-user">...</span></p>
+                </div>
+                <button id="logout-btn" class="admin-btn btn-secondary">Logga ut</button>
+            </header>
+            <div class="handdrawn-divider"></div>
+
+            <div class="admin-box">
+                <h2>Lägg till ny maträtt</h2>
+                <form id="add-item-form" class="admin-form">
+                    <div class="form-group">
+                        <label for="item-title">Namn på maträtten</label>
+                        <input type="text" id="item-title" required placeholder="Skriv namnet på maträtten här">
+                    </div>
+                    <div class="form-group">
+                        <label for="item-description">Beskrivning</label>
+                        <textarea id="item-description" required
+                            placeholder="Skriv en beskrivning av maträtten"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="item-price">Pris (kr)</label>
+                        <input type="number" id="item-price" required min="0" step="0.01"
+                            placeholder="Skriv priset i kronor">
+                    </div>
+                    <div class="form-group">
+                        <label for="item-category">Kategori</label>
+                        <select id="item-category" required>
+                            <option value="">Välj kategori</option>
+                            <option value="förrätt">Förrätt</option>
+                            <option value="varmrätt">Varmrätt</option>
+                            <option value="efterrätt">Efterrätt</option>
+                            <option value="dryck">Dryck</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="admin-btn">Spara i menyn</button>
+                    <p id="form-message" class="success-msg" style="display: none;"></p>
+                </form>
+            </div>
+
+            <div class="admin-box table-box">
+                <h2>Hantera befintlig meny</h2>
+                <div id="admin-menu-list" class="admin-menu-list">
+                    <p class="loading">Laddar meny...</p>
+                </div>
+            </div>
+        </section>
+
+
+    </div>
     <script type="module" src="/admin.js"></script>
 </body>
 
