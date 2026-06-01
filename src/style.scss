@@ -1,0 +1,165 @@
+@use "sass:color";
+
+// variabler för färg
+$bg-color: #fbfbfa;
+$ink-color: #2b2b2b;
+$text-muted: #666666;
+$accent-color: #d94b36;
+
+// globala inställningar
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: $bg-color;
+    color: $ink-color;
+    font-family: "Yomogi", sans-serif;
+    padding: 3rem 1.5rem;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+}
+
+// rubriker
+h1,
+h2,
+h3 {
+    font-family: "Yomogi", cursive;
+}
+
+.container {
+    max-width: 650px;
+    margin: 0 auto;
+}
+
+.logo-container {
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: center;
+
+    .logo {
+        max-width: 120px;
+        height: auto;
+
+        &[src=""] {
+            width: 120px;
+            height: 120px;
+            border: 2px dashed transparent;
+        }
+    }
+}
+
+.site-header {
+    text-align: center;
+    margin-bottom: 2rem;
+
+    h1 {
+        font-size: 5rem;
+        color: $ink-color;
+        text-transform: uppercase;
+        transform: rotate(-1.5deg);
+        font-weight: 400;
+        letter-spacing: -1px;
+    }
+
+    .tagline {
+        font-family: "Caveat", cursive;
+        color: $text-muted;
+        font-size: 1.4rem;
+        margin-top: 0.2rem;
+    }
+}
+
+.handdrawn-divider {
+    height: 1px;
+    background-color: transparent;
+    border-top: 1px solid $ink-color;
+    border-radius: 45% 55% 50% 50% / 4px 4px 4px 4px;
+    margin: 2.5rem 0;
+    opacity: 0.7;
+}
+
+.presentation {
+    text-align: center;
+    font-size: 1.05rem;
+    color: color.adjust($ink-color, $lightness: 10%);
+    margin-bottom: 4rem;
+
+    p {
+        font-style: italic;
+    }
+}
+
+.menu-section {
+    h2 {
+        font-size: 1.8rem;
+        margin-bottom: 2rem;
+        color: $accent-color;
+        font-weight: 400;
+        text-align: center;
+    }
+}
+
+.menu-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    text-align: center;
+}
+
+.menu-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+
+    .menu-item-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 1rem;
+
+        h3 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            letter-spacing: -0.3px;
+        }
+
+        .dots {
+            flex-grow: 1;
+            border-bottom: 1px dashed dotted color.adjust($ink-color, $lightness: 40%);
+            height: 1px;
+            position: relative;
+            top: -4px;
+        }
+
+        .price {
+            font-family: "Yomogi", cursive;
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: $ink-color;
+        }
+    }
+
+    .description {
+        font-size: 0.95rem;
+        color: $text-muted;
+        max-width: 85%;
+    }
+
+    .category {
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: color.adjust($text-muted, $lightness: 15%);
+        font-weight: bold;
+        margin-top: 0.2rem;
+    }
+}
+
+.loading {
+    font-family: "Yomogi", cursive;
+    color: $text-muted;
+    text-align: center;
+} 

@@ -1,14 +1,49 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <title>Grumpy Tofu</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.js"></script>
-  </body>
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&family=Yomogi&display=swap"
+    rel="stylesheet">
+  <title>Grumpy Tofu</title>
+</head>
+
+<body>
+  <div id="app">
+    <header class="site-header">
+      <div class="logo-container">
+        <img src="/logo.svg" alt="Grumpy Tofu Logo" class="logo">
+      </div>
+      <h1>Grumpy Tofu</h1>
+      <p class="tagline">Lite argare, mycket godare.</p>
+    </header>
+    
+    <div class="handdrawn-divider"></div>
+
+    <main>
+      <section class="presentation">
+      <h2>Om oss!</h2>
+      <p>Välkommen till Grumpy Tofu! Vi tröttnade på smaklös, tråkig mat, och bestämde oss för att erbjuda något bättre.
+        Vår mat är full av smak, karaktär, och tofu.
+      </p>
+    </section>
+
+    <section class="menu-section">
+      <h2>Meny</h2>
+      <div id="menu-container" class="menu-list">
+        <p class="loading">Loading grumpy menu...</p>
+      </div>
+    </section>
+
+    </main>
+  </div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+
 </html>
