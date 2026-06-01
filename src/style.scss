@@ -93,8 +93,18 @@ h3 {
 }
 
 .menu-section {
+
+    h1 {
+        font-size: 3rem;
+        color: $accent-color;
+        text-align: center;
+        text-transform: uppercase;
+        text-decoration: underline 5px;
+        letter-spacing: 4px;
+    }
+
     h2 {
-        font-size: 1.8rem;
+        font-size: 2rem;
         margin-bottom: 2rem;
         color: $accent-color;
         font-weight: 400;
@@ -121,7 +131,7 @@ h3 {
         gap: 1rem;
 
         h3 {
-            font-size: 1.15rem;
+            font-size: 1.5rem;
             font-weight: 600;
             letter-spacing: -0.3px;
             padding-bottom: 1.5rem;
@@ -144,7 +154,7 @@ h3 {
     }
 
     .description {
-        font-size: 0.95rem;
+        font-size: 1.2rem;
         color: $text-muted;
         max-width: 85%;
         text-align: left;
