@@ -28,6 +28,10 @@ function checkAuth() {
 
         // hämta menyn till adminlistan
         fetchAdminMenu();
+
+        // hämta betställningar
+        getOrders();
+
     } else {
         // om ingen token finns, visa inloggning
         loginSection.style.display = 'block';
@@ -78,6 +82,73 @@ logoutBtn.addEventListener('click', () => {
     checkAuth();
 });
 
+// hämta beställningar
+async function getOrders() {
+    const token = localStorage.getItem('token');
+    const ordersList = document.getElementById('admin-orders-list');
+
+    try {
+        const response = await fetch(`${API_BASE_URL}/orders`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+
+        if (response.ok) {
+            const orders = await response.json();
+
+            if (orders.length === 0) {
+                ordersList.innerHTML = '<p>Inga beställningar väntar</p>';
+                return;
+            }
+
+            ordersList.innerHTML = '';
+
+            orders.forEach(order => {
+                // bygg lista av maträtter i beställning
+                const itemsHtml = order.items.map(item => `<li>${item.quantity}x ${item.title}</li>`).join('');
+
+                ordersList.innerHTML += `
+                <div class="menu-item" style="border-left: 4px solid #d94b36; padding-left: 1rem; margin-bottom: 1.5rem;">
+                <div class="menu-item-header">
+                <h3 style="color: #d94b36;">Tid: ${order.pickupTime}</h3>
+                <div class="dots"></div>
+                <span class="price">${order.totalPrice} kr</span>
+                </div>
+                <p class="description"><strong>Namn:</strong> ${order.customerName}
+                <ul style="margin: 0.5rem 0 1rem 1.5rem; font-family: 'Yomogi', cursive;">
+                ${itemsHtml}
+                </ul>
+                <button class="admin-btn" onclick="completeOrder('${order._id}')" style=background-color: #2b2b2b; color: #fbfbfa;">Markera som klar</button>
+                </div>
+                `;
+            });
+        }
+    } catch (error) {
+        console.error("Kunde inte hämta beställningar:", error);
+    }
+}
+
+// funktion för att radera/markera som klar
+window.completeOrder = async function(orderId) {
+    const token = localStorage.getItem('token');
+    try {
+        const response = await fetch(`${API_BASE_URL}/orders/${orderId}`, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+
+        if (response.ok) {
+            getOrders();
+        }
+    } catch (error) {
+        console.error("Kunde inte markera order som klar:", error);
+    }
+}
+
 // hämta menyn
 async function fetchAdminMenu() {
     try {
@@ -106,7 +177,7 @@ async function fetchAdminMenu() {
 
             // koppla klick till radera-knapp
             adminItem.querySelector('.delete-btn').addEventListener('click', (e) => {
-                const itemId = e.target.gettAttribute('data-id');
+                const itemId = e.target.getAttribute('data-id');
                 deleteMenuItem(itemId);
             });
 
@@ -185,5 +256,27 @@ async function deleteMenuItem(id) {
         alert(error.message);
     }
 }
+
+// flikar för admin
+const tabOrders = document.getElementById('tab-orders');
+const tabMenu = document.getElementById('tab-menu');
+const viewOrders = document.getElementById('view-orders');
+const viewMenu = document.getElementById('view-menu');
+
+// klicka på beställningar
+tabOrders.addEventListener('click', () => {
+    viewOrders.style.display = 'block';
+    viewMenu.style.display = 'none';
+    tabOrders.classList.add('active');
+    tabMenu.classList.remove('active');
+});
+
+// klicka på menyhantering
+tabMenu.addEventListener('click', () => {
+    viewOrders.style.display = 'none';
+    viewMenu.style.display = 'block';
+    tabMenu.classList.add('active');
+    tabOrders.classList.remove('active');
+})
 
 document.addEventListener('DOMContentLoaded', checkAuth);
