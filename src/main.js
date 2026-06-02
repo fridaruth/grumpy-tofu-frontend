@@ -1,4 +1,4 @@
-import './style.scss'
+import ''
 
 // adress till backend
 const API_URL = 'http://localhost:3000/api/menu';
