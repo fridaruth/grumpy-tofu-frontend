@@ -101,7 +101,7 @@ async function getOrders() {
             const orders = await response.json();
 
             if (orders.length === 0) {
-                ordersList.innerHTML = '<p>Inga beställningar väntar</p>';
+                ordersList.innerHTML = '<p class="empty-msg" style="text-align: center">Inga beställningar väntar</p>';
                 return;
             }
 
@@ -338,7 +338,7 @@ async function getMessages() {
             const messages = await response.json();
 
             if (messages.length === 0) {
-                messageList.innerHTML = '<p class="empty-msg">Inga meddelanden. Skönt!</p>';
+                messageList.innerHTML = '<p class="empty-msg" style="text-align: center">Inga meddelanden. Skönt!</p>';
                 return;
             }
 
