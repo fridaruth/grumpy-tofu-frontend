@@ -23,3 +23,15 @@ h2,
 h3 {
     font-family: "Yomogi", cursive;
 }
+
+h3 {
+    font-weight: 600;
+    font-size: 1.2rem;
+    color: $accent-color;
+    text-transform: uppercase;
+    margin-top: 2rem;
+}
+
+a {
+    color: $ink-color;
+}

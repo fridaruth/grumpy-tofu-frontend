@@ -14,107 +14,145 @@
 </head>
 
 <body>
-    <div id="admin-container" class="admin-box">
+    <main>
+        <div id="admin-container" class="admin-box">
 
-        <section id="login-section" class="admin-box">
-            <header class="site-header">
-                <div class="logo-container">
-                    <img src="/src/assets/logo.png" alt="Grumpy Tofu Logo" class="logo">
-                </div>
-                <h1>Grumpy Tofu Admin-panel</h1>
-                <p class="tagline">Personalinloggning</p>
-            </header>
-            <div class="handdrawn-divider"></div>
-
-            <form id="login-form" class="admin-form">
-                <div class="form-group">
-                    <label for="username">Användarnamn</label>
-                    <input type="text" id="username" required autocomplete="username">
-                </div>
-                <div class="form-group">
-                    <label for="password">Lösenord</label>
-                    <input type="password" id="password" required autocomplete="current-password">
-                </div>
-                <button type="submit" class="admin-btn">Logga in</button>
-                <p id="login-error" class="error-message" style="display: none;"></p>
-            </form>
-        </section>
-
-        <section id="dashboard-section" style="display: none;">
-            <header class="admin-header">
-                <div>
+            <section id="login-section" class="admin-box">
+                <header class="site-header">
                     <div class="logo-container">
                         <img src="/src/assets/logo.png" alt="Grumpy Tofu Logo" class="logo">
                     </div>
-                    <h1>Grumpy Tofu Dashboard</h1>
-                    <p class="tagline">Inloggad som: <span id="logged-in-user">...</span></p>
-                </div>
-                <button id="logout-btn" class="admin-btn btn-secondary">Logga ut</button>
-            </header>
-            <div class="handdrawn-divider"></div>
+                    <h1>Grumpy Tofu Admin-panel</h1>
+                    <p class="tagline">Personalinloggning</p>
+                </header>
+                <div class="handdrawn-divider"></div>
 
-            <div class="admin-nav" style="display: flex; justify-content: center; gap: 1rem; margin-bottom: 2rem;">
-                <button id="tab-orders" class="admin-tab active">Beställningar</button>
-                <button id="tab-menu" class="admin-tab">Menyhantering</button>
-            </div>
-            <div id="view-orders">
-
-                <div class="admin-box table-box" style="border-color: #d94b36;">
-                    <h2 style="color: #d94b36;">Inkommande Beställningar!</h2>
-                    <div id="admin-orders-list" class="admin-menu-list">
-                        <p class="loading">Laddar beställningar...</p>
+                <form id="login-form" class="admin-form">
+                    <div class="form-group">
+                        <label for="username">Användarnamn</label>
+                        <input type="text" id="username" required autocomplete="username">
                     </div>
-                </div>
-            </div>
+                    <div class="form-group">
+                        <label for="password">Lösenord</label>
+                        <input type="password" id="password" required autocomplete="current-password">
+                    </div>
+                    <button type="submit" class="admin-btn">Logga in</button>
+                    <p id="login-error" class="error-message" style="display: none;"></p>
+                </form>
+            </section>
 
-            <div id="view-menu" style="display: none;">
-                <div class="admin-box">
-                    <h2>Lägg till ny maträtt</h2>
-                    <form id="add-item-form" class="admin-form">
-                        <div class="form-group">
-                            <label for="item-title">Namn på maträtten</label>
-                            <input type="text" id="item-title" required placeholder="Skriv namnet på maträtten här">
+            <section id="dashboard-section" style="display: none;">
+                <header class="admin-header">
+                    <div>
+                        <div class="logo-container">
+                            <img src="/src/assets/logo.png" alt="Grumpy Tofu Logo" class="logo">
                         </div>
-                        <div class="form-group">
-                            <label for="item-description">Beskrivning</label>
-                            <textarea id="item-description" required
-                                placeholder="Skriv en beskrivning av maträtten"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="item-price">Pris (kr)</label>
-                            <input type="number" id="item-price" required min="0" step="0.01"
-                                placeholder="Skriv priset i kronor">
-                        </div>
-                        <div class="form-group">
-                            <label for="item-category">Kategori</label>
-                            <select id="item-category" required>
-                                <option value="">Välj kategori</option>
-                                <option value="förrätt">Förrätt</option>
-                                <option value="varmrätt">Varmrätt</option>
-                                <option value="efterrätt">Efterrätt</option>
-                                <option value="dryck">Dryck</option>
-                            </select>
-                        </div>
+                        <h1>Grumpy Tofu Dashboard</h1>
+                        <p class="tagline">Inloggad som: <span id="logged-in-user">...</span></p>
+                    </div>
+                    <button id="logout-btn" class="admin-btn btn-secondary">Logga ut</button>
+                </header>
+                <div class="handdrawn-divider"></div>
 
-                        <button type="submit" class="admin-btn">Spara i menyn</button>
-                        <p id="form-message" class="success-msg" style="display: none;"></p>
-                    </form>
+                <div class="admin-nav">
+                    <button id="tab-orders" class="admin-tab active">Beställningar</button>
+                    <button id="tab-menu" class="admin-tab">Menyhantering</button>
+                    <button id="tab-messages" class="admin-tab">Meddelanden</button>
                 </div>
 
-                <div class="mini-divider"></div>
-
-                <div class="admin-box table-box">
-                    <h2>Hantera befintlig meny</h2>
-                    <div id="admin-menu-list" class="admin-menu-list">
-                        <p class="loading">Laddar meny...</p>
+                <div id="view-orders">
+                    <div class="admin-box table-box" style="border-color: #d94b36;">
+                        <h2 style="color: #d94b36;">Inkommande Beställningar!</h2>
+                        <div id="admin-orders-list" class="admin-menu-list">
+                            <p class="loading">Laddar beställningar...</p>
+                        </div>
                     </div>
                 </div>
 
-            </div>
-        </section>
+                <div id="view-menu" style="display: none;">
+                    <div class="admin-box">
+                        <h2>Lägg till ny maträtt</h2>
 
 
-    </div>
+                        <form id="add-item-form" class="admin-form">
+                            <div class="form-group">
+                                <label for="item-title">Namn på maträtten</label>
+                                <input type="text" id="item-title" required placeholder="Skriv namnet på maträtten här">
+                            </div>
+                            <div class="form-group">
+                                <label for="item-description">Beskrivning</label>
+                                <textarea id="item-description" required
+                                    placeholder="Skriv en beskrivning av maträtten"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="item-price">Pris (kr)</label>
+                                <input type="number" id="item-price" required min="0" step="0.01"
+                                    placeholder="Skriv priset i kronor">
+                            </div>
+                            <div class="form-group">
+                                <label for="item-category">Kategori</label>
+                                <select id="item-category" required>
+                                    <option value="">Välj kategori</option>
+                                    <option value="förrätt">Förrätt</option>
+                                    <option value="varmrätt">Varmrätt</option>
+                                    <option value="efterrätt">Efterrätt</option>
+                                    <option value="dryck">Dryck</option>
+                                </select>
+                            </div>
+
+                            <button type="submit" class="admin-btn">Spara i menyn</button>
+                            <p id="form-message" class="success-msg" style="display: none;"></p>
+                        </form>
+                    </div>
+
+                    <div class="mini-divider"></div>
+
+                    <div class="admin-box table-box">
+                        <h2>Hantera befintlig meny</h2>
+                        <div id="admin-menu-list" class="admin-menu-list">
+
+                            <div id="cat-förrätt" class="menu-category-block" style="display: none;">
+                                <h2>Förrätter</h2>
+                                <div class="menu-list"></div>
+                            </div>
+
+                            <div class="mini-divider"></div>
+
+                            <div id="cat-varmrätt" class="menu-category-block" style="display: none;">
+                                <h2>Varmrätter</h2>
+                                <div class="menu-list"></div>
+                            </div>
+
+                            <div class="mini-divider"></div>
+
+                            <div id="cat-efterrätt" class="menu-category-block" style="display: none;">
+                                <h2>Efterrätter</h2>
+                                <div class="menu-list"></div>
+                            </div>
+
+                            <div class="mini-divider"></div>
+
+                            <div id="cat-dryck" class="menu-category-block" style="display: none;">
+                                <h2>Drycker</h2>
+                                <div class="menu-list"></div>
+                            </div>
+
+                            <p class="loading">Laddar meny...</p>
+                        </div>
+                    </div>
+
+                   </div> <div id="view-messages" style="display: none;">
+                        <div class="admin-box table-box">
+                            <h2>Meddelanden från kunder</h2>
+                            <div id="admin-messages-list" class="admin-menu-list">
+                            </div>
+                        </div>
+                    </div>
+                
+            </section>
+
+        </div>
+    </main>
     <script type="module" src="/src/admin.js"></script>
 </body>
 

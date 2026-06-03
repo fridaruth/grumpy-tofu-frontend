@@ -1,3 +1,4 @@
+"use strict";
 import './style.scss';
 
 // adress till backend
@@ -62,7 +63,7 @@ async function fetchMenu() {
   } catch (error) {
     console.error('Fel vid hämtning av meny:', error);
     loadingText.innerHTML = 'Hoppsan! Det gick inte att ansulta till köket. Se till att backend-servern är igång.';
-    loadingText.style.color = '#d94b35';
+    loadingText.classList.add('error-message');
     loadingText.style.display = 'block';
   }
 }
@@ -79,6 +80,18 @@ document.addEventListener('click', (e) => {
     const title = e.target.getAttribute('data-title');
     const price = Number(e.target.getAttribute('data-price'));
     addToCart(title, price);
+
+    const btn = e.target;
+    const originalText = btn.textContent;
+
+    btn.textContent = 'Tillagd! ✓';
+    btn.classList.add('added-feedback');
+
+    // ta bort efter 2 sekunder
+    setTimeout(() => {
+      btn.textContent = originalText;
+      btn.classList.remove('added-feedback');
+    }, 1500);
   }
 });
 
@@ -102,12 +115,12 @@ function updateCartUI() {
 
   // om varukorgen är tom
   if (cart.length === 0) {
-    cartItemsContainer.innerHTML = '<p class="empty-cart-msg" style="font-style: italic; color: #666;">Din varukorg är tom! Lägg till något från menyn</p>';
+    cartItemsContainer.innerHTML = '<p class="empty-cart-msg">Din varukorg är tom! Lägg till något från menyn</p>';
     cartTotalPrice.textContent = '0';
     orderForm.style.display = 'none';
     return;
   }
-  
+
   // töm behållaren
   cartItemsContainer.innerHTML = '';
   let total = 0;
@@ -132,7 +145,7 @@ function updateCartUI() {
 const orderForm = document.getElementById('order-form');
 
 orderForm.addEventListener('submit', async (e) => {
-  e.preventDefault(); 
+  e.preventDefault();
 
   const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
 
@@ -141,7 +154,7 @@ orderForm.addEventListener('submit', async (e) => {
     customerName: document.getElementById('order-name').value,
     customerPhone: document.getElementById('order-phone').value,
     pickupTime: document.getElementById('order-time').value,
-    items: cart, 
+    items: cart,
     totalPrice: total
   };
 
@@ -175,4 +188,81 @@ orderForm.addEventListener('submit', async (e) => {
   } catch (error) {
     console.error("Serverfel:", error);
   }
+});
+
+// fliksystem för kunder
+const navMenu = document.getElementById('nav-menu');
+const navAbout = document.getElementById('nav-about');
+const navContact = document.getElementById('nav-contact');
+
+const viewMenu = document.getElementById('view-menu');
+const viewAbout = document.getElementById('view-about');
+const viewContact = document.getElementById('view-contact');
+
+// funktion för att dölja vyer och stänga av knappar
+function hideAllViews() {
+  viewMenu.style.display = 'none';
+  viewAbout.style.display = 'none';
+  viewContact.style.display = 'none';
+
+  navMenu.classList.remove('active');
+  navAbout.classList.remove('active');
+  navContact.classList.remove('active');
+}
+
+// lyssna på klick
+navMenu.addEventListener('click', () => {
+  hideAllViews();
+  viewMenu.style.display = 'block';
+  navMenu.classList.add('active');
+});
+
+navAbout.addEventListener('click', () => {
+  hideAllViews();
+  viewAbout.style.display = 'block';
+  navAbout.classList.add('active');
+});
+
+navContact.addEventListener('click', () => {
+  hideAllViews();
+  viewContact.style.display = 'block';
+  navContact.classList.add('active');
+})
+
+// kontaktformulär
+const contactForm = document.getElementById('contact-form');
+const contactMessage = document.getElementById('contact-message');
+
+contactForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  const name = document.getElementById('name').value;
+  const email = document.getElementById('email').value;
+  const title = document.getElementById('title').value;
+  const message = document.getElementById('message').value;
+
+  try {
+    const response = await fetch(`${API_BASE_URL}/messages`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ name, email, title, message })
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+    console.error("Backenden vill inte spara! Anledning:", errorData);
+    return;
+    }
+  } catch (error) {
+  console.error("Kunde inte prata med backenden alls:", error);
+  return;
+}
+
+// visa meddelande när formulär är skickat
+contactMessage.innerHTML = "Skickat. Vi bryr oss inte egentligen om vad <strong>du</strong> tycker. Men tack för meddelandet."
+contactMessage.style.display = "block";
+
+contactForm.reset();
 });

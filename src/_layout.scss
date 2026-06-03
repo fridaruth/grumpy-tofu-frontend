@@ -1,6 +1,11 @@
 @use "sass:color";
 @use 'variables' as *;
 
+body {
+    padding: 0 1rem;
+    overflow-x: hidden;
+}
+
 .container {
     max-width: 650px;
     margin: 0 auto;
@@ -25,7 +30,6 @@
 
 .site-header {
     text-align: center;
-    margin-bottom: 2rem;
 
     h1 {
         font-size: 5rem;
@@ -34,6 +38,10 @@
         transform: rotate(-1.5deg);
         font-weight: 400;
         letter-spacing: -1px;
+
+        @media (max-width: 768px) {
+            font-size: 3.5rem;
+        }
     }
 
     .tagline {
@@ -41,6 +49,46 @@
         color: $text-muted;
         font-size: 1.4rem;
         margin-top: 0.2rem;
+    }
+}
+
+// navigering
+.main-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2.4rem;
+
+    .admin-tab {
+        background-color: transparent;
+        color: $ink-color;
+        border: 2px dashed rgba(43, 43, 43, 0.5);
+        padding: 0.6rem 2rem;
+        font-family: "Yomogi", cursive;
+        font-size: 1.2rem;
+        border-radius: 8px 8px 0 0;
+        cursor: pointer;
+        transition: all 0.2s ease;
+
+        &:hover {
+            border-color: $accent-color;
+            color: $accent-color;
+        }
+
+        &.active {
+            background-color: $accent-color;
+            color: $bg-color;
+            border-color: $accent-color;
+            border-style: solid;
+        }
+
+        @media (max-width: 768px) {
+            padding: 0.5rem 1rem;
+            font-size: 1rem;
+            flex-grow: 1;
+            text-align: center;
+        }
     }
 }
 
@@ -58,7 +106,8 @@
     background-color: transparent;
     border-top: 1px solid $ink-color;
     border-radius: 45% 55% 50% 50% / 8px 8px 8px 8px;
-    margin: 2rem 10rem;
+    width: 50%;
+    margin: 0 auto 2rem auto;
     opacity: 0.7;
 }
 
@@ -73,11 +122,21 @@
     }
 }
 
+.menu-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+    align-items: start;
+
+    @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+    }
+}
+
 .menu-section {
 
     h1 {
         font-size: 3rem;
-        color: $accent-color;
         text-align: center;
         text-transform: uppercase;
         text-decoration: underline 5px;
@@ -104,6 +163,13 @@
     display: flex;
     flex-direction: column;
     gap: 0.25rem;
+    border-left: 2px solid #d94b36; 
+    padding-left: 1rem; 
+    margin-bottom: 1.5rem;
+
+    ul {
+        margin-left: 2rem;
+    }
 
     .menu-item-header {
         display: flex;
@@ -158,6 +224,13 @@
         &:active {
             transform: scale(0.95);
         }
+
+        &.added-feedback {
+            background-color: $accent-color;
+            color: $bg-color;
+            border-color: $accent-color;
+            transform: scale(1.05);
+        }
     }
 
     .description {
@@ -198,9 +271,11 @@
 
     .admin-link {
         color: color.adjust($text-muted, $lightness: 20%);
-        font-size: 1.2rem;
+        font-size: 1.4rem;
+        font-weight: bold;
         text-decoration: none;
         transition: color 0.3s ease;
+        text-decoration: under;
 
         &:hover {
             color: $accent-color;
@@ -228,4 +303,61 @@
     font-family: "Yomogi", sans-serif;
     font-size: 1.1rem;
     font-weight: bold;
+}
+
+// kontakt
+#view-contact {
+    text-align: center;
+    line-height: 2rem;
+
+    li {
+        text-align: left;
+    }
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+
+    label {
+        font-size: 1.2rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    input,
+    textarea,
+    select {
+        background: transparent;
+        border: 1px solid $ink-color;
+        border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+        padding: 0.8rem;
+        font-size: 1.1rem;
+        color: $ink-color;
+        outline: none;
+        font-family: "Google Sans", sans-serif;
+
+        &:focus {
+            border-color: $accent-color;
+            box-shadow: 0 0 0 1px $accent-color;
+        }
+    }
+
+    textarea {
+        resize: vertical;
+        min-height: 80px;
+        border-radius: 15px 225px 15px 255px / 255px 15px 225px 15px;
+    }
+}
+
+.form-group-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+#contact-message {
+    color: $accent-color;
 }

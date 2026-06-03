@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="sv">
 
 <head>
   <meta charset="UTF-8">
@@ -24,92 +24,122 @@
     </header>
 
     <div class="handdrawn-divider"></div>
+    <nav class="main-nav">
+      <button id="nav-menu" class="admin-tab active">Meny</button>
+      <button id="nav-about" class="admin-tab">Om oss</button>
+      <button id="nav-contact" class="admin-tab">Kontakt</button>
+    </nav>
 
-    <main>
+    <main id="view-menu">
+      <div class="menu-layout">
 
-      <section class="menu-section">
-        <h1>Meny</h1>
+        <section class="menu-section">
+          <h1>Meny</h1>
 
-        <div id="cat-förrätt" class="menu-category-block" style="display: none;">
-          <h2>Förrätter</h2>
-          <div class="menu-list"></div>
-        </div>
-
-        <div class="mini-divider"></div>
-
-        <div id="cat-varmrätt" class="menu-category-block" style="display: none;">
-          <h2>Varmrätter</h2>
-          <div class="menu-list"></div>
-        </div>
-
-        <div class="mini-divider"></div>
-
-        <div id="cat-efterrätt" class="menu-category-block" style="display: none;">
-          <h2>Efterrätter</h2>
-          <div class="menu-list"></div>
-        </div>
-
-        <div class="mini-divider"></div>
-
-        <div id="cat-dryck" class="menu-category-block" style="display: none;">
-          <h2>Drycker</h2>
-          <div class="menu-list"></div>
-        </div>
-
-        <p id="menu-loading" class="loading">Loading grumpy menu...</p>
-      </section>
- <div class="handdrawn-divider"></div>
-
-      <div class="handdrawn-divider"></div>
-
-      <section class="cart-section admin-box" id="cart-section">
-        <h2>Din beställning</h2>
-
-        <div id="cart-items" class="cart-items">
-          <p class="empty-cart-msg" style="font-style: italic; color: #666;">Din varukorg är tom. Lägg till något från menyn!</p>
-        </div>
-
-        <div class="cart-total" style="margin: 1.5rem 0; border-top: 2px dashed #2b2b2b; padding-top: 1rem;">
-          <h3>Totalt: <span id="cart-total-price">0</span> kr</h3>
-        </div>
-
-        <form id="order-form" class="admin-form" style="display: none;">
-          <div class="form-group">
-            <label for="order-name">Ditt namn</label>
-            <input type="text" id="order-name" required placeholder="Vem hämtar maten?">
+          <div id="cat-förrätt" class="menu-category-block" style="display: none;">
+            <h2>Förrätter</h2>
+            <div class="menu-list"></div>
           </div>
-          <div class="form-group">
-            <label for="order-phone">Ditt telefonnummer</label>
-            <input type="tel" id="order-phone" required placeholder="T.ex. 070-123 45 67">
-          </div>
-          <div class="form-group">
-            <label for="order-time">När vill du hämta maten?</label>
-            <input type="time" id="order-time" required>
-          </div>
-          <button type="submit" class="admin-btn">Lägg beställning</button>
-          <p id="order-message" class="success-msg" style="display: none;"></p>
-        </form>
-      </section>
-      <div class="handdrawn-divider"></div>
 
+          <div class="mini-divider"></div>
+
+          <div id="cat-varmrätt" class="menu-category-block" style="display: none;">
+            <h2>Varmrätter</h2>
+            <div class="menu-list"></div>
+          </div>
+
+          <div class="mini-divider"></div>
+
+          <div id="cat-efterrätt" class="menu-category-block" style="display: none;">
+            <h2>Efterrätter</h2>
+            <div class="menu-list"></div>
+          </div>
+
+          <div class="mini-divider"></div>
+
+          <div id="cat-dryck" class="menu-category-block" style="display: none;">
+            <h2>Drycker</h2>
+            <div class="menu-list"></div>
+          </div>
+
+          <p id="menu-loading" class="loading">Loading grumpy menu...</p>
+        </section>
+
+        <section class="cart-section admin-box" id="cart-section">
+          <h2>Take Away</h2>
+
+          <div id="cart-items" class="cart-items">
+            <p class="empty-msg">Beställ mat här, och hämta när det passar dig!</p>
+          </div>
+
+          <div class="cart-total" style="margin: 1.5rem 0; border-top: 2px dashed #2b2b2b; padding-top: 1rem;">
+            <h3>Totalt: <span id="cart-total-price">0</span> kr</h3>
+          </div>
+
+          <form id="order-form" class="admin-form" style="display: none;">
+            <div class="form-group">
+              <label for="order-name">Ditt namn</label>
+              <input type="text" id="order-name" required placeholder="Vem hämtar maten?">
+            </div>
+            <div class="form-group">
+              <label for="order-phone">Ditt telefonnummer</label>
+              <input type="tel" id="order-phone" required placeholder="T.ex. 070-123 45 67">
+            </div>
+            <div class="form-group">
+              <label for="order-time">När vill du hämta maten?</label>
+              <input type="time" id="order-time" required>
+            </div>
+            <button type="submit" class="admin-btn">Lägg beställning & <br>Betala vid hämtning</button>
+            <p id="order-message" class="success-msg" style="display: none;"></p>
+          </form>
+        </section>
+      </div>
     </main>
   </div>
-  
-  <section class="presentation">
+
+  <section id="view-about" class="presentation admin-box" style="display: none;">
     <h2>Om oss!</h2>
     <p>Välkommen till Grumpy Tofu! Vi tröttnade på smaklös, tråkig mat, och bestämde oss för att erbjuda något
       bättre.
       Vår mat är full av smak, karaktär... och tofu.
     </p>
+    <p>Allt vår mat är vegansk. 🌱 
+    </p>
   </section>
 
-  <footer class="site-footer">
-    <div class="mini-divider"></div>
-    <p>&copy; 2026 Grumpy Tofu</p>
-    <a href="/admin.html" class="admin-link">Personalinloggning</a>
-  </footer>
+  <section id="view-contact" class="admin-box" style="display: none;">
+    <h2>Kontakta oss!</h2>
+    <p>Har du frågor, funderingar, eller vill du kanske klaga på vår mat? Tveka inte att höra av dig!</p>
 
-  <script type="module" src="/src/main.js"></script>
+    <form id="contact-form">
+      <div class="form-group">
+        <label for="name">Namn</label>
+        <input type="text" id="name" required autocomplete="name">
+      </div>
+      <div class="form-group">
+        <label for="email">E-post</label>
+        <input type="email" id="email" required autocomplete="email">
+      </div>
+      <div class="form-group">
+        <label for="title">Titel</label>
+        <input type="text" id="title" required autocomplete="title">
+      </div>
+      <div class="form-group">
+        <label for="message">Meddelande</label>
+        <textarea id="message" required placeholder="Skriv ditt meddelande här"></textarea>
+      </div>
+      <button type="submit" class="admin-btn">Skicka</button>
+      <p id="contact-message" class="error-message" style="display: none;"></p>
+    </form>
+    </section>
+
+    <footer class="site-footer">
+      <div class="mini-divider"></div>
+      <p>&copy; 2026 Grumpy Tofu</p>
+      <a href="/admin.html" class="admin-link">Personalinloggning</a>
+    </footer>
+
+    <script type="module" src="/src/main.js"></script>
 </body>
 
 </html>
