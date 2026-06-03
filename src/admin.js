@@ -1,7 +1,7 @@
 import './style.scss';
 
 // Api-adress
-const API_BASE_URL = 'http://localhost:3000/api';
+const API_BASE_URL = 'https://projekt-tofu-api.onrender.com/api';
 
 // hämta HTML-element
 const loginSection = document.getElementById('login-section');

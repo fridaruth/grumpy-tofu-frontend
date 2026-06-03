@@ -2,7 +2,7 @@
 import './style.scss';
 
 // adress till backend
-const API_BASE_URL = 'http://localhost:3000/api';
+const API_BASE_URL = 'https://projekt-tofu-api.onrender.com/api';
 
 // hämta menyn från API
 async function fetchMenu() {
