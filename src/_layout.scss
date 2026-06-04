@@ -134,25 +134,6 @@ body {
     }
 }
 
-.menu-section {
-
-    h1 {
-        font-size: 3rem;
-        text-align: center;
-        text-transform: uppercase;
-        text-decoration: underline 5px;
-        letter-spacing: 4px;
-    }
-
-    h2 {
-        font-size: 2rem;
-        margin-bottom: 2rem;
-        color: $accent-color;
-        font-weight: 400;
-        text-align: center;
-    }
-}
-
 .menu-list {
     display: flex;
     flex-direction: column;
@@ -187,10 +168,9 @@ body {
 
         .dots {
             flex-grow: 1;
-            border-bottom: 1px dashed dotted color.adjust($ink-color, $lightness: 40%);
-            height: 1px;
+            border-bottom: 1px dotted color.adjust($ink-color, $lightness: 40%);
             position: relative;
-            top: -4px;
+            top: 1px;
         }
 
         .price {
@@ -275,8 +255,7 @@ body {
         font-size: 1.4rem;
         font-weight: bold;
         text-decoration: none;
-        transition: color 0.3s ease;
-        text-decoration: under;
+        transition: color 0.2s ease;
 
         &:hover {
             color: $accent-color;
@@ -289,7 +268,7 @@ body {
 .cart-section {
     margin: 2rem auto;
     max-width: 600px;
-    padding:
+    padding: 3rem 0;
 
     h2 {
         text-align: center;

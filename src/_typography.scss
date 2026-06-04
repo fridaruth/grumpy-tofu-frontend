@@ -35,3 +35,29 @@ h3 {
 a {
     color: $ink-color;
 }
+
+
+.menu-section {
+
+    h1 {
+        font-size: 3rem;
+        text-align: center;
+        text-transform: uppercase;
+        text-decoration: underline 5px;
+        letter-spacing: 4px;
+    }
+
+    h2 {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+        color: $accent-color;
+        font-weight: 400;
+        text-align: center;
+    }
+}
+
+.menu-title {
+    font-size: 2rem;
+        color: $ink-color !important;
+        text-transform: uppercase;
+}

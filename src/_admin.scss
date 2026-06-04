@@ -120,7 +120,8 @@ body {
     cursor: pointer;
     border-radius: 15px 225px 15px 255px / 255px 15px 225px 15px;
     transition: all 0.2s ease;
-    margin-top: 1.4rem;
+    display: block;
+    margin: 1.4rem auto;
 
     &:hover {
         background: transparent;
