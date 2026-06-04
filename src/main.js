@@ -4,6 +4,24 @@ import './style.scss';
 // adress till backend
 const API_BASE_URL = 'https://projekt-tofu-api.onrender.com/api';
 
+// bygg öppettider för beställningar (11:00 - 21:00)
+function generateTimeOptions() {
+  const timeSelect = document.getElementById('order-time');
+  if (!timeSelect) return;
+
+  // loopa igenom från 11 till 20
+  for (let hour = 11; hour <= 20; hour++) {
+    // för varje timme, loopa igenom kvarter
+    for (let minute of ['00', '15', '30', '45']) {
+      const timeString = `${hour}:${minute}`;
+      timeSelect.innerHTML += `<option value="${timeString}">${timeString}</option>`;
+    }
+  }
+}
+
+// kör funktionen direkt när sidan startar
+document.addEventListener('DOMContentLoaded', generateTimeOptions);
+
 // hämta menyn från API
 async function fetchMenu() {
   const loadingText = document.getElementById('menu-loading');
@@ -252,17 +270,17 @@ contactForm.addEventListener('submit', async (e) => {
 
     if (!response.ok) {
       const errorData = await response.json();
-    console.error("Backenden vill inte spara! Anledning:", errorData);
-    return;
+      console.error("Backenden vill inte spara! Anledning:", errorData);
+      return;
     }
   } catch (error) {
-  console.error("Kunde inte prata med backenden alls:", error);
-  return;
-}
+    console.error("Kunde inte prata med backenden alls:", error);
+    return;
+  }
 
-// visa meddelande när formulär är skickat
-contactMessage.innerHTML = "Skickat. Vi bryr oss inte egentligen om vad <strong>du</strong> tycker. Men tack för meddelandet."
-contactMessage.style.display = "block";
+  // visa meddelande när formulär är skickat
+  contactMessage.innerHTML = "Skickat. Vi bryr oss inte egentligen om vad <strong>du</strong> tycker. Men tack för meddelandet."
+  contactMessage.style.display = "block";
 
-contactForm.reset();
+  contactForm.reset();
 });
