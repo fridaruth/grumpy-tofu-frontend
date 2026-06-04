@@ -188,7 +188,7 @@ orderForm.addEventListener('submit', async (e) => {
     if (response.ok) {
       // beställning gick igenom
       const messageEl = document.getElementById('order-message');
-      messageEl.textContent = 'Tack för beställningen! Din mat väntar på dig.';
+      messageEl.textContent = 'Tack för din beställning!';
       messageEl.style.display = 'block';
 
       // Töm varukorg och rensa
