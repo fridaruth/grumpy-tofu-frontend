@@ -34,6 +34,12 @@ function checkAuth() {
         // hämta meddelanden
         getMessages();
 
+        // kör getOrders och getMessages automatiskt efter en viss tid
+        setInterval(() => {
+            getOrders();
+            getMessages();
+        }, 30000);
+
     } else {
         // om ingen token finns, visa inloggning
         loginSection.style.display = 'block';
