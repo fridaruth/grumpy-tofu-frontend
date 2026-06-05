@@ -279,7 +279,7 @@ contactForm.addEventListener('submit', async (e) => {
   }
 
   // visa meddelande när formulär är skickat
-  contactMessage.innerHTML = "Skickat. Vi bryr oss inte egentligen om vad <strong>du</strong> tycker. Men tack för meddelandet."
+  contactMessage.innerHTML = "Skickat.. tack för ditt meddelande. Vi får se om vi återkommer."
   contactMessage.style.display = "block";
 
   contactForm.reset();

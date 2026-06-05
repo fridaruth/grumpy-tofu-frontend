@@ -1,3 +1,4 @@
+@use 'components';
 @use "sass:color";
 @use 'variables' as *;
 
@@ -11,115 +12,17 @@ body {
     margin: 0 auto;
 }
 
-.logo-container {
-    margin-bottom: 1rem;
-    display: flex;
-    justify-content: center;
-
-    .logo {
-        max-width: 120px;
-        height: auto;
-
-        &[src=""] {
-            width: 120px;
-            height: 120px;
-            border: 2px dashed transparent;
-        }
-    }
-}
-
-.site-header {
-    text-align: center;
-    margin: 2rem;
-
-    h1 {
-        font-size: 5rem;
-        color: $ink-color;
-        text-transform: uppercase;
-        transform: rotate(-1.5deg);
-        font-weight: 400;
-        letter-spacing: -1px;
-
-        @media (max-width: 768px) {
-            font-size: 3.5rem;
-        }
-    }
-
-    .tagline {
-        font-family: "Caveat", cursive;
-        color: $text-muted;
-        font-size: 1.4rem;
-        margin-top: 0.2rem;
-    }
-}
-
-// navigering
-.main-nav {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-    margin-bottom: 2.4rem;
-
-    .admin-tab {
-        background-color: transparent;
-        color: $ink-color;
-        border: 2px dashed rgba(43, 43, 43, 0.5);
-        padding: 0.6rem 2rem;
-        font-family: "Yomogi", cursive;
-        font-size: 1.2rem;
-        border-radius: 8px 8px 0 0;
-        cursor: pointer;
-        transition: all 0.2s ease;
-
-        &:hover {
-            border-color: $accent-color;
-            color: $accent-color;
-        }
-
-        &.active {
-            background-color: $accent-color;
-            color: $bg-color;
-            border-color: $accent-color;
-            border-style: solid;
-        }
-
-        @media (max-width: 768px) {
-            padding: 0.5rem 1rem;
-            font-size: 1rem;
-            flex-grow: 1;
-            text-align: center;
-        }
-    }
-}
-
-.handdrawn-divider {
-    height: 1px;
-    background-color: transparent;
-    border-top: 1px solid $ink-color;
-    border-radius: 45% 55% 50% 50% / 4px 4px 4px 4px;
-    margin: 2.5rem 0;
-    opacity: 0.7;
-}
-
-.mini-divider {
-    height: 1px;
-    background-color: transparent;
-    border-top: 1px solid $ink-color;
-    border-radius: 45% 55% 50% 50% / 8px 8px 8px 8px;
-    width: 50%;
-    margin: 0 auto 2rem auto;
-    opacity: 0.7;
-}
-
 .presentation {
     text-align: center;
     font-size: 1.05rem;
     color: color.adjust($ink-color, $lightness: 10%);
     margin-bottom: 4rem;
+    max-width: 70ch;
+    margin: 0 auto;
 
     p {
         font-style: italic;
+        margin-top: 2rem;
     }
 }
 
@@ -242,12 +145,21 @@ body {
     text-align: center;
     margin-top: 4rem;
     padding-bottom: 2rem;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+
+
+    h5 {
+        font-size: 1.2rem;
+        margin: 1rem
+    }
 
     p {
+        
         font-family: "Caveat", cursive;
         color: $text-muted;
-        font-size: 1rem;
-        margin-bottom: 0.5rem;
+        font-size: 1.3rem;
     }
 
     .admin-link {
@@ -293,49 +205,6 @@ body {
     li {
         text-align: left;
     }
-}
-
-.form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
-
-    label {
-        font-size: 1.2rem;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-    }
-
-    input,
-    textarea,
-    select {
-        background: transparent;
-        border: 1px solid $ink-color;
-        border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
-        padding: 0.8rem;
-        font-size: 1.1rem;
-        color: $ink-color;
-        outline: none;
-        font-family: "Google Sans", sans-serif;
-
-        &:focus {
-            border-color: $accent-color;
-            box-shadow: 0 0 0 1px $accent-color;
-        }
-    }
-
-    textarea {
-        resize: vertical;
-        min-height: 80px;
-        border-radius: 15px 225px 15px 255px / 255px 15px 225px 15px;
-    }
-}
-
-.form-group-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
 }
 
 #contact-message {
